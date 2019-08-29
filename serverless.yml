@@ -1,0 +1,20 @@
+service: return-pdf
+provider:
+  name: aws
+  runtime: python3.7
+  region: ap-southeast-2
+  stage: dev
+functions:
+  get-pdf:
+    handler: get_pdf.handler
+    events:
+      - http:
+          path: pdf
+          method: get
+custom:
+  apigwBinary:
+    #list of mime-types
+    types: 
+      - '*/*'
+plugins:
+  - serverless-apigw-binary
